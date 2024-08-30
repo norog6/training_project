@@ -27,7 +27,7 @@ public class User {
 
     private String phoneNumber;
 
-    private String username;
+    private String login;
 
     private String password;
 

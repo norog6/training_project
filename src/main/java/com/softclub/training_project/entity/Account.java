@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+import static com.softclub.training_project.entity.Courses.*;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -23,7 +25,30 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
-    private BigDecimal balance;
+    private double balance;
 
     private boolean isBlocked;
+
+    public double toByn() {
+        if (this.getCurrency().equals(Currency.BYN)) {
+            return this.getBalance();
+        } else if (this.getCurrency().equals(Currency.USD)) {
+            return this.getBalance()*UsdToByn;
+        } else {
+            return this.getBalance()*RubToByn;
+        }
+    }
+
+    public void toOwnCurrency(){
+        if (this.getCurrency().equals(Currency.USD)) {
+            this.setBalance(this.getBalance()*BynToUsd);
+        } else if (this.getCurrency().equals(Currency.RUB)) {
+            this.setBalance(this.getBalance()*BynToRub);
+        }
+    }
+    public void swapBetweenAccounts(Account account,double amount,double amountByn) {
+        this.setBalance(this.getBalance()-amount);
+        account.setBalance(account.toByn()+amountByn);
+        account.toOwnCurrency();
+    }
 }

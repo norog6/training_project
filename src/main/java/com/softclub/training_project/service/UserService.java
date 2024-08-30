@@ -36,10 +36,9 @@ public class UserService {
     }
     public User changeLogin(Long userId, String newLogin) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        user.setUsername(newLogin);
+        user.setLogin(newLogin);
         return userRepository.save(user);
     }
-
     public User getUserProfile(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
     }

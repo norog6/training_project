@@ -27,10 +27,10 @@ public class UserDTO {
     @Size(min=13,max=13,message = "Phone number should have 13 characters")
     private String phoneNumber;
 
-    private Role roles;
+    private Role role;
 
     @NotBlank(message = "Login is mandatory")
-    @Size(min = 8, max = 20, message = "Login should be between 8 and 20 characters")
+    @Size(min = 6, max = 20, message = "Login should be between 8 and 20 characters")
     private String login;
 
     @NotBlank(message = "Password is mandatory")

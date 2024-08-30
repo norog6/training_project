@@ -15,5 +15,5 @@ public class AccountDTO {
 
     private BigDecimal balance;
 
-    private boolean isBlocked;
+   // private boolean isBlocked;
 }

@@ -1,8 +1,11 @@
 package com.softclub.training_project.dto;
 
 import com.softclub.training_project.entity.enums.CreditType;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -14,15 +17,13 @@ public class CreditDTO {
 
     private Long id;
 
-    @NotBlank(message = "amount is mandatory")
-    private BigDecimal amount;
+    @Min(value = 0)
+    private Double amount;
 
     private LocalDate startDate;
 
-    private LocalDate endDate;
-
-    private CreditType creditType;
-
-    private BigDecimal interestRate;
+    @Min(value = 3)
+    @Max(value = 60)
+    private Long timeInMonth;
 
 }
