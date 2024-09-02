@@ -1,10 +1,10 @@
 package com.softclub.training_project.dto;
 
-import com.softclub.training_project.entity.enums.DepositType;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -12,13 +12,12 @@ import java.time.LocalDate;
 public class DepositDTO {
     private Long id;
 
-    private BigDecimal amount;
+    private double amount;
 
     private LocalDate startDate;
 
-    private LocalDate endDate;
+    @Min(value = 3)
+    @Max(value = 36)
+    private Long timeInMonth;
 
-    private DepositType depositType;
-
-    private BigDecimal interestRate;
 }

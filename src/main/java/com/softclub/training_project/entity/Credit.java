@@ -21,7 +21,7 @@ public class Credit {
     @ManyToOne
     private User user;
 
-    private Double amount;
+    private double amount;
 
     private Long timeInMonth;
 
@@ -31,20 +31,25 @@ public class Credit {
     @Temporal(TemporalType.DATE)
     private LocalDate endDate;
 
-//    @Enumerated(EnumType.STRING)
-//    private CreditType creditType; // Единичные или ежемесячные выплаты
+    private double payMonth;
 
-    private Double interestRate;
+    private double percent;
+    @Column(name = "loanBalance")
+    private double loanBalance;
 
-    public void insert(){
-        if(this.getTimeInMonth() <12){
+    private double interestRate;
+
+    public void insert() {
+        if (this.getTimeInMonth() < 12) {
             this.setInterestRate(0.50);
-        } else if (this.timeInMonth <30) {
+        } else if (this.timeInMonth < 30) {
             this.setInterestRate(0.35);
-        }else this.setInterestRate(0.25);
+        } else this.setInterestRate(0.25);
     }
-    public double sumPerMonth(){
-        return (this.getAmount() * this.getInterestRate()/12 * Math.pow(1 + this.getInterestRate()/12, this.getTimeInMonth())) /
-        (Math.pow(1 + this.getInterestRate()/12, this.getTimeInMonth()) - 1);
+
+    public void changeSumAndPercent() {
+        this.setPayMonth((this.getLoanBalance() * this.getInterestRate() / 12 * Math.pow(1 + this.getInterestRate() / 12, this.getTimeInMonth())) /
+                (Math.pow(1 + this.getInterestRate() / 12, this.getTimeInMonth()) - 1));
+        this.setPercent((this.getPayMonth() * this.getTimeInMonth() - this.getLoanBalance()) / this.getTimeInMonth());
     }
 }

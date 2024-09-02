@@ -20,7 +20,11 @@ public class CreditController {
         return ResponseEntity.ok("Success");
     }
     @PutMapping("/{creditId}/payPerMonth")
-    public ResponseEntity<String> payPerMonth(@PathVariable Long creditId, Long accountId) {
+    public ResponseEntity<String> payPerMonth(@PathVariable Long creditId, @RequestParam Long accountId) {
         return ResponseEntity.ok(creditService.payPerMonth(creditId,accountId));
+    }
+    @PutMapping("/{creditId}/payExtern")
+    public ResponseEntity<String> payExtern(@PathVariable Long creditId, @RequestParam Long accountId,@RequestParam double amount) {
+        return ResponseEntity.ok(creditService.pay(creditId,accountId,amount));
     }
 }
