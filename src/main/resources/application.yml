@@ -1,0 +1,22 @@
+keycloak:
+  realm: myrealm  # Your realm name
+  auth-server-url: http://localhost:8080/realms/my-app-realm
+  resource: myclient # Your client ID
+  credentials:
+    secret: ZzJ7EQF0ebOeMp42zyDtiZjXcAuzxRfc  # Replace with your client secret
+  bearer-only: true  # This application will only validate tokens
+  ssl-required: external
+  use-resource-role-mappings: true
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: myclient # Your client ID
+            client-secret: ZzJ7EQF0ebOeMp42zyDtiZjXcAuzxRfc  # Replace with your client secret
+            provider: keycloak
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/my-app-realm
