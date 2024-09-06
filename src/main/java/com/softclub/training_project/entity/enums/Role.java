@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 //public enum Role implements GrantedAuthority {
 public enum Role {
     ADMIN("ADMIN"),
-    CUSTOMER("CUSTOMER");
+    CUSTOMER("USER");
 
     private final String value;
 

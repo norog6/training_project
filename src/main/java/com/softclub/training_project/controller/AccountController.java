@@ -6,11 +6,12 @@ import com.softclub.training_project.service.AccountService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Работа с аккаунтами")
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/user/accounts")
 public class AccountController {
     @Autowired
     AccountService accountService;
@@ -26,12 +27,14 @@ public class AccountController {
         return ResponseEntity.ok("Successful");
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{accountId}/block")
     public ResponseEntity<Void> blockAccount(@PathVariable Long accountId) {
         accountService.blockAccount(accountId);
         return ResponseEntity.ok().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{accountId}/unblock")
     public ResponseEntity<Void> unblockAccount(@PathVariable Long accountId) {
         accountService.unblockAccount(accountId);

@@ -1,6 +1,7 @@
 package com.softclub.training_project.controller;
 
 import com.softclub.training_project.service.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class RegistrationController {
 
-     RegistrationService registrationService;
+    @Autowired
+    RegistrationService registrationService;
 
     public RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
