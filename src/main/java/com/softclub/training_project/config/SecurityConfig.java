@@ -8,6 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import static java.lang.StringTemplate.STR;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 
@@ -24,7 +25,7 @@ public class SecurityConfig  {
     public SecurityFilterChain clientFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
                 .securityMatchers(matcher -> matcher
-                        .requestMatchers(mvc.pattern("/**")))
+                        .requestMatchers(mvc.pattern(STR."/**")))
                 .authorizeHttpRequests(requests -> requests
                         .anyRequest()
                         .authenticated())

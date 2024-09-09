@@ -1,5 +1,5 @@
 keycloak:
-  realm: myrealm  # Your realm name
+  realm: myrealn  # Your realm name
   auth-server-url: http://localhost:8081/realms/myrealn
   resource: myclient # Your client ID
   credentials:
@@ -26,4 +26,4 @@ spring:
             user-name-attribute: preferred_username
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/neobank
+          issuer-uri: http://localhost:8081/realms/myrealn
