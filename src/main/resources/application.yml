@@ -1,12 +1,3 @@
-keycloak:
-  realm: myrealn  # Your realm name
-  auth-server-url: http://localhost:8081/realms/myrealn
-  resource: myclient # Your client ID
-  credentials:
-    secret: ZzJ7EQF0ebOeMp42zyDtiZjXcAuzxRfc  # Replace with your client secret
-  bearer-only: true  # This application will only validate tokens
-  ssl-required: external
-  use-resource-role-mappings: true
 
 admin:
   username: admin
@@ -22,8 +13,8 @@ spring:
             scope: openid
         provider:
           keycloak:
-            issuer-uri: http://localhost:8081/realms/myrealn
+            issuer-uri: http://localhost:8081/realms/myrealm
             user-name-attribute: preferred_username
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8081/realms/myrealn
+          issuer-uri: http://localhost:8081/realms/myrealm

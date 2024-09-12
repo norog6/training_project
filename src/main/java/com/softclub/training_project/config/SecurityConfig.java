@@ -25,7 +25,7 @@ public class SecurityConfig  {
     public SecurityFilterChain clientFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
                 .securityMatchers(matcher -> matcher
-                        .requestMatchers(mvc.pattern(STR."/**")))
+                        .requestMatchers(mvc.pattern(STR."/api/**")))
                 .authorizeHttpRequests(requests -> requests
                         .anyRequest()
                         .authenticated())

@@ -6,23 +6,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class RegistrationController {
 
-    @Autowired
-    RegistrationService registrationService;
+//    @Autowired
+//    RegistrationService registrationService;
 
-    public RegistrationController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String email) {
-
-        String result = registrationService.registerUser(username, password, email);
-        return ResponseEntity.ok(result);
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> registerUser(
+//            @RequestParam String username,
+//            @RequestParam String password,
+//            @RequestParam String email) {
+//
+//        String result = registrationService.registerUser(username, password, email);
+//        return ResponseEntity.ok(result);
+//    }
 }

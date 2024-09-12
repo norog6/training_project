@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Работа с депозитами")
 @RestController
-@RequestMapping("/deposits")
+@RequestMapping("/api/deposits")
 public class DepositController {
     @Autowired
     private DepositService depositService;

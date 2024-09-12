@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Работа с кредитами")
 @RestController
-@RequestMapping("/credits")
+@RequestMapping("/api/credits")
 public class CreditController {
     @Autowired
     CreditService creditService;

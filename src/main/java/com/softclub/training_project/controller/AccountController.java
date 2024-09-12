@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Работа с аккаунтами")
 @RestController
-@RequestMapping("/user/accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
     @Autowired
     AccountService accountService;
