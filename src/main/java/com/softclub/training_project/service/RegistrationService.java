@@ -1,11 +1,11 @@
 package com.softclub.training_project.service;
 
-import jakarta.ws.rs.core.Response;
-import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.KeycloakBuilder;
-import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.UserRepresentation;
-import org.springframework.beans.factory.annotation.Value;
+//import jakarta.ws.rs.core.Response;
+//import org.keycloak.admin.client.Keycloak;
+//import org.keycloak.admin.client.KeycloakBuilder;
+//import org.keycloak.representations.idm.CredentialRepresentation;
+//import org.keycloak.representations.idm.UserRepresentation;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 

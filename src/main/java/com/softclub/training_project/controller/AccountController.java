@@ -27,19 +27,7 @@ public class AccountController {
         return ResponseEntity.ok("Successful");
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/{accountId}/block")
-    public ResponseEntity<Void> blockAccount(@PathVariable Long accountId) {
-        accountService.blockAccount(accountId);
-        return ResponseEntity.ok().build();
-    }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/{accountId}/unblock")
-    public ResponseEntity<Void> unblockAccount(@PathVariable Long accountId) {
-        accountService.unblockAccount(accountId);
-        return ResponseEntity.ok().build();
-    }
     @PutMapping("/{accountId}/addmoney")
     public ResponseEntity<String> addMoney(@PathVariable Long accountId, @RequestParam double amount) {
         accountService.addMoneyToAccount(accountId, amount);

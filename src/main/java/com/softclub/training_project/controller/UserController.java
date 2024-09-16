@@ -11,7 +11,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @Tag(name="Работа с пользователем")
 @RestController
@@ -58,4 +65,20 @@ public class UserController {
     public ResponseEntity<User> getUserProfile(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.getUserProfile(userId));
     }
-}
+    @GetMapping("/roles")
+    public String getRoles() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+        StringBuilder roles = new StringBuilder("Roles: ");
+        for (GrantedAuthority authority : authorities) {
+            roles.append(authority.getAuthority()).append(" ");
+        }
+
+        return roles.toString();
+    }
+    @GetMapping("/token")
+    public String getTokenDetails(@AuthenticationPrincipal Jwt jwt) {
+        return jwt.getClaimAsStringList("realm_access.roles").toString();
+    }
+    }
