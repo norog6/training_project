@@ -66,19 +66,13 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserProfile(userId));
     }
     @GetMapping("/roles")
-    public String getRoles() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-        StringBuilder roles = new StringBuilder("Roles: ");
-        for (GrantedAuthority authority : authorities) {
-            roles.append(authority.getAuthority()).append(" ");
-        }
-
-        return roles.toString();
+    public String getRoles(Authentication authentication) {
+        return authentication.getAuthorities().toString();
     }
+
+
     @GetMapping("/token")
     public String getTokenDetails(@AuthenticationPrincipal Jwt jwt) {
-        return jwt.getClaimAsStringList("realm_access.roles").toString();
+        return jwt.getClaimAsStringList("realm_access").toString();
     }
     }
