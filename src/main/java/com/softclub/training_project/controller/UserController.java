@@ -73,6 +73,6 @@ public class UserController {
 
     @GetMapping("/token")
     public String getTokenDetails(@AuthenticationPrincipal Jwt jwt) {
-        return jwt.getClaimAsStringList("realm_access").toString();
+        return jwt.getClaimAsStringList("authorities").toString();
     }
     }

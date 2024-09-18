@@ -11,9 +11,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig  {
 
     @Bean
@@ -31,18 +33,18 @@ public class SecurityConfig  {
                         .requestMatchers("api/admin/**").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())
-                //.oauth2Login(withDefaults())
-                //.oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()))
+//                .oauth2Login(withDefaults())
+//                .oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()))
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
-                                .jwtAuthenticationConverter(jwtAuthenticationConverter()) // Настраиваем конвертер для JWT
+                                .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter()) // Настраиваем конвертер для JWT
                         ))
                 .build();
     }
-    @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
-        return new CustomJwtAuthenticationConverter();
-    }
+//    @Bean
+//    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+//        return new CustomJwtAuthenticationConverter();
+//    }
 //    @Bean
 //    public JwtAuthenticationConverter jwtAuthenticationConverter() {
 //        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
